@@ -81,7 +81,27 @@ function createLinkElement(link) {
 
     const icon = document.createElement('div');
     icon.className = 'link-icon';
-    icon.textContent = getInitial(link.name);
+
+    const faviconUrl = getFaviconUrl(link.url);
+
+    if (faviconUrl) {
+        const img = document.createElement('img');
+        img.src = faviconUrl;
+        img.alt = link.name;
+        img.className = 'favicon-img';
+
+        // Fallback to initial if image fails to load
+        img.onerror = () => {
+            icon.innerHTML = '';
+            icon.textContent = getInitial(link.name);
+            icon.classList.add('fallback-icon');
+        };
+
+        icon.appendChild(img);
+    } else {
+        icon.textContent = getInitial(link.name);
+        icon.classList.add('fallback-icon');
+    }
 
     const name = document.createElement('div');
     name.className = 'link-name';
@@ -95,6 +115,23 @@ function createLinkElement(link) {
 
 function getInitial(name) {
     return name.charAt(0).toUpperCase();
+}
+
+function getDomainFromUrl(url) {
+    try {
+        const urlObj = new URL(url);
+        return urlObj.hostname;
+    } catch (e) {
+        return null;
+    }
+}
+
+function getFaviconUrl(url) {
+    const domain = getDomainFromUrl(url);
+    if (domain) {
+        return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+    }
+    return null;
 }
 
 function renderSettingsView() {
