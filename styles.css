@@ -146,6 +146,18 @@ header h1 {
     box-shadow: 0 4px 12px var(--shadow);
 }
 
+.favicon-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.link-icon.fallback-icon {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
 .link-name {
     font-size: 0.75rem;
     text-align: center;
