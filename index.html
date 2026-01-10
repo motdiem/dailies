@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Dailies">
+    <title>Dailies</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main View -->
+    <div id="main-view" class="view active">
+        <header>
+            <h1>Dailies</h1>
+            <button id="settings-btn" class="icon-btn" aria-label="Settings">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m8.66-13.66l-4.24 4.24m-4.84 4.84l-4.24 4.24m16.32-4.24l-4.24-4.24m-4.84-4.84L3.34 3.34"></path>
+                </svg>
+            </button>
+        </header>
+        <main id="links-grid" class="links-grid"></main>
+    </div>
+
+    <!-- Settings View -->
+    <div id="settings-view" class="view">
+        <header>
+            <button id="back-btn" class="icon-btn" aria-label="Back">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5m7 7l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <h1>Settings</h1>
+            <div class="spacer"></div>
+        </header>
+
+        <div class="settings-content">
+            <section class="settings-section">
+                <h2>Your Links</h2>
+                <div id="links-list" class="links-list"></div>
+                <button id="add-link-btn" class="btn btn-primary">+ Add Link</button>
+            </section>
+
+            <section class="settings-section">
+                <h2>Data Management</h2>
+                <div class="button-group">
+                    <button id="export-btn" class="btn btn-secondary">Export Settings</button>
+                    <button id="import-btn" class="btn btn-secondary">Import Settings</button>
+                </div>
+                <textarea id="import-export-text" placeholder="Paste your settings here to import..." rows="6"></textarea>
+            </section>
+        </div>
+    </div>
+
+    <!-- Link Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Edit Link</h2>
+            <form id="edit-form">
+                <div class="form-group">
+                    <label for="link-name">Name</label>
+                    <input type="text" id="link-name" required maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="link-url">URL</label>
+                    <input type="url" id="link-url" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
